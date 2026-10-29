@@ -45,7 +45,7 @@ namespace CzytaniePliku
 
                 Album a;
 
-                a.artist = lines[i].Trim().TrimStart('\uFEFF');
+                a.artist = lines[i].Trim();
                 a.album = lines[++i].Trim().Trim('"');
                 a.songsNumber = int.Parse(lines[++i].Trim());
                 a.year = int.Parse(lines[++i].Trim());
