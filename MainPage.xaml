@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CzytaniePliku.MainPage"
-             BackgroundColor="LightGreen">
+             BackgroundColor="LightGreen"
+             >
 
     <ScrollView>
         <HorizontalStackLayout
             Padding="30,0"
             Spacing="25"
+            
             HorizontalOptions="Center">
             <!-- Wstacz -->
             <ImageButton 
@@ -17,7 +19,9 @@
                 WidthRequest="50"
                 BackgroundColor="LightGreen"
                  />
-            <VerticalStackLayout>
+            <VerticalStackLayout
+                WidthRequest="900"
+                HeightRequest="200">
                 <HorizontalStackLayout>
                     <!-- Płyta -->
                     <Image
@@ -29,15 +33,16 @@
                         <Label
                             Text="Kapela"
                             x:Name="ArtistLabel"
-                            FontSize="30" />
+                            FontSize="50" />
                         <Label
                             Text="Album"
                             x:Name="AlbumLabel"
-                            FontSize="20" />
+                            FontSize="30" />
                         <Label
                             Text="xx utworów       1992"
                             x:Name="IleKiedyLabel"
-                            TextColor="green" />    
+                            TextColor="green"
+                            FontSize="20"/>
                     </VerticalStackLayout>
 
                 </HorizontalStackLayout>
@@ -46,17 +51,24 @@
                     Padding="0,20"
                     >
                     <Label
-                        Text="Welcome "
-                        x:Name="SomeLabel"
+                        Text=":::"
+                        x:Name="DownloadLabel"
                         TextColor="green"
                         SemanticProperties.Description="Ilość pobrań" 
                         VerticalOptions="Center"
                         />
                     <Button 
                         Text="Pobierz"
+                        x:Name="PobierzBtn"
                         BackgroundColor="green"
                         Padding="15,0"
                         FontSize="20"
+                        Clicked="OnPobierzBtnClicked"
+                        />
+                    <Label
+                        Text="::::::::::::::::::"
+                        x:Name="SomeLabel"
+                        TextColor="Grey"
                         />
                 </HorizontalStackLayout>
             </VerticalStackLayout>

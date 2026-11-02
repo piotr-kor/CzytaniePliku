@@ -22,12 +22,14 @@ namespace CzytaniePliku
         {
             InitializeComponent();
             LoadMauiAsset();    // Wczytanie pliku
+            
         }
         private void UpdateAlbum()
         {
             AlbumLabel.Text = albums[current].album;
             ArtistLabel.Text = albums[current].artist;
             IleKiedyLabel.Text = $"{albums[current].songsNumber.ToString()} utworów   {albums[current].year.ToString()}";
+            DownloadLabel.Text = albums[current].downloadNumber.ToString();
         }
         private void OnDalejButtonClicked(object sender, EventArgs e)
         {
@@ -43,7 +45,14 @@ namespace CzytaniePliku
                 current = max - 1;
             UpdateAlbum();
         }
-        async Task LoadMauiAsset()
+        private void OnPobierzBtnClicked(object sender, EventArgs e)
+        {
+            Album tmpA = albums[current];
+            tmpA.downloadNumber++;
+            albums[current] = tmpA;
+            UpdateAlbum();
+        }
+            async Task LoadMauiAsset()
         {
             using var stream = await FileSystem.OpenAppPackageFileAsync("Data.txt");
             using var reader = new StreamReader(stream);
@@ -67,8 +76,9 @@ namespace CzytaniePliku
 
                 albums.Add(a);
             }
-            SomeLabel.Text = $"Album {current}: {albums[current].album}";
+            SomeLabel.Text = $"Album 2: {albums[1].artist}";
             max = albums.Count;
+            
         }
 
     
