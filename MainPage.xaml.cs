@@ -21,8 +21,15 @@ namespace CzytaniePliku
         public MainPage()
         {
             InitializeComponent();
-            LoadMauiAsset();    // Wczytanie pliku
-            
+            //LoadMauiAsset();          przeniesione do osobnej funkcji
+            //UpdateAlbum();            by UpdateAlbum() czekało na załadowanie pliku
+            //                          a konstruktor nie może być async
+            InitializeAsync();
+        }
+        private async void InitializeAsync()        // async !!!
+        {
+            await LoadMauiAsset();                  // Wczytanie pliku z await
+            UpdateAlbum();                          // UpdateAlbum() po LoadMauiAsset() bez await nie działało
         }
         private void UpdateAlbum()
         {
