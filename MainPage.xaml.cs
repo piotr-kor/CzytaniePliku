@@ -6,9 +6,8 @@ namespace CzytaniePliku
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
-        // Struktura przechowująca dane albumu
+        private int current = 1;
+        private int max = 1;
         struct Album
         {
             public string artist;
@@ -17,18 +16,33 @@ namespace CzytaniePliku
             public int year;
             public long downloadNumber;
         }
-
-        // Lista albumów
         List<Album> albums = new List<Album>();
 
         public MainPage()
         {
             InitializeComponent();
-
-            // Wczytanie pliku
-            LoadMauiAsset();
+            LoadMauiAsset();    // Wczytanie pliku
         }
-
+        private void UpdateAlbum()
+        {
+            AlbumLabel.Text = albums[current].album;
+            ArtistLabel.Text = albums[current].artist;
+            IleKiedyLabel.Text = $"{albums[current].songsNumber.ToString()} utworów   {albums[current].year.ToString()}";
+        }
+        private void OnDalejButtonClicked(object sender, EventArgs e)
+        {
+            current++;
+            if (current >= max)
+                current = 0;
+            UpdateAlbum();
+        }
+        private void OnWstaczButtonClicked(object sender, EventArgs e)
+        {
+            current--;
+            if (current < 0)
+                current = max - 1;
+            UpdateAlbum();
+        }
         async Task LoadMauiAsset()
         {
             using var stream = await FileSystem.OpenAppPackageFileAsync("Data.txt");
@@ -53,7 +67,8 @@ namespace CzytaniePliku
 
                 albums.Add(a);
             }
-            SomeLabel.Text = $"Album 1: {albums[1].album}";
+            SomeLabel.Text = $"Album {current}: {albums[current].album}";
+            max = albums.Count;
         }
 
     

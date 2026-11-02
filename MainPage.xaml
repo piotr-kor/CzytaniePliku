@@ -1,20 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CzytaniePliku.MainPage">
+             x:Class="CzytaniePliku.MainPage"
+             BackgroundColor="LightGreen">
 
     <ScrollView>
         <HorizontalStackLayout
             Padding="30,0"
             Spacing="25"
             HorizontalOptions="Center">
+            <!-- Wstacz -->
             <ImageButton 
                 Source="dotnet_bot.png"
-                x:Name="LeftButton"
+                x:Name="WstaczButton"
+                Clicked="OnWstaczButtonClicked"
                 WidthRequest="50"
+                BackgroundColor="LightGreen"
                  />
             <VerticalStackLayout>
                 <HorizontalStackLayout>
+                    <!-- Płyta -->
                     <Image
                         Source="dotnet_bot.png"
                         HeightRequest="100"
@@ -22,26 +27,46 @@
                         SemanticProperties.Description="dot net bot" />
                     <VerticalStackLayout>
                         <Label
-                             Text="Hello, World!"
-                             Style="{StaticResource Headline}"
-                             SemanticProperties.HeadingLevel="Level1" />
+                            Text="Kapela"
+                            x:Name="ArtistLabel"
+                            FontSize="30" />
+                        <Label
+                            Text="Album"
+                            x:Name="AlbumLabel"
+                            FontSize="20" />
+                        <Label
+                            Text="xx utworów       1992"
+                            x:Name="IleKiedyLabel"
+                            TextColor="green" />    
                     </VerticalStackLayout>
 
                 </HorizontalStackLayout>
-                <HorizontalStackLayout>
+                <HorizontalStackLayout
+                    Spacing="20"
+                    Padding="0,20"
+                    >
                     <Label
                         Text="Welcome "
                         x:Name="SomeLabel"
-                        Style="{StaticResource SubHeadline}"
-                        SemanticProperties.HeadingLevel="Level2"
-                        SemanticProperties.Description="Welcome to dot" />
+                        TextColor="green"
+                        SemanticProperties.Description="Ilość pobrań" 
+                        VerticalOptions="Center"
+                        />
+                    <Button 
+                        Text="Pobierz"
+                        BackgroundColor="green"
+                        Padding="15,0"
+                        FontSize="20"
+                        />
                 </HorizontalStackLayout>
             </VerticalStackLayout>
-
+            <!-- Dalej -->
             <ImageButton 
                 Source="dotnet_bot.png"
-                x:Name="RightButton"
+                x:Name="DalejButton"
+                Clicked="OnDalejButtonClicked"
                 WidthRequest="50"
+                BackgroundColor="LightGreen"
                  />
         </HorizontalStackLayout>
     </ScrollView>
